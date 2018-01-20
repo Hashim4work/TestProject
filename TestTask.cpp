@@ -124,6 +124,36 @@ void zip_fun(const U &u, const vector<T> v)
 		cout << "nothing";
 }
 
+template<class inputiterator, class function>
+void for_eachh(inputiterator first, inputiterator last, function fn)
+{
+	while (first != last) {
+		fn(*first);
+		++first;
+	}
+	//return fn;      // or, since c++11: return move(fn);
+}
+void myfunctiondis(int i)
+{
+	cout << i << " ";
+}
+template<typename t, typename Function>
+void for_eachh(t first, t last, Function fn, double result)
+{
+	result = 0;
+	//	++first;
+	while (first != last) {
+		result = fn(result, *first);
+		++first;
+	}
+	cout << result;
+	//return fn;      // or, since C++11: return move(fn);
+}
+int myfunctionMul(int res, int i)
+{
+	return (res + i);
+
+}
 
 void main()
 {
@@ -159,5 +189,9 @@ void main()
 	zip_fun(a, s);
 	cout << endl << "Charater with integer/double" << endl;
 	zip_fun(s, a);
-
+	cout << endl<<"ForEach function to cout every element" << endl;
+	for_eachh(a.begin(), a.end(), myfunctiondis);
+	cout << endl << "forEach fun to display result of multiplicatio of all elements in array" << endl;
+	for_eachh(a.begin(), a.end(), myfunctionMul, 0);
+	cout << endl << "Similarly we can write forEach function for any other logic like display sum of list";
 }

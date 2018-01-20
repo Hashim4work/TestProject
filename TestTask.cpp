@@ -43,12 +43,81 @@ T reduce(const vector<T>& v)
 	return result;
 }
 
+template<typename T, typename U>
+void zip_fun(const vector<T>& v, const vector<U>& u)
+{
+	//vector<T> res;
+	int mi = min(v.size(), u.size());
+	//if (typeid(u) == typeid(std::string))
+	//{
+	//	cout << "{";
+	//	for (int i = 0; i <= mi - 1; i++)
+	//	{
+	//		cout << "(" << v.at(i) << ",";
+	//		printf(u.at(i).c_str());
+	//		cout << ")" ",";
+	//		cout << "hello";
+	//		//res[i] = v.at(x); i++;
+	//		//res[i] = u.at(u); i++;
+	//	}
+	//	cout << "}";
+	//}
+	//else
+	//{
+	cout << "{";
+	for (int i = 0; i <= mi - 1; i++)
+	{
+		cout << "(" << v.at(i) << "," << u.at(i) << ")" ",";
+		//res[i] = v.at(x); i++;
+		//res[i] = u.at(u); i++;
+	}
+	cout << "}";
+	//}
+
+	//return res;
+}
+template<typename T>
+void zip2_fun(const vector<T>& v, const vector<string> u)
+{
+	int mi = min(v.size(), u.size());
+	cout << "{";
+	for (int i = 0; i <= mi - 1; i++)
+	{
+		cout << "(" << v.at(i) << ",";
+		printf(u.at(i).c_str());
+		cout << ")" ",";
+		//res[i] = v.at(x); i++;
+		//res[i] = u.at(u); i++;
+	}
+	cout << "}";
+}
+template<typename T, typename U>
+void zip_fun(const vector<T>& v, const U & u)
+{
+	int mi = min(v.size(), u.size());
+	if (typeid(u) == typeid(std::string))
+	{
+		cout << "{";
+		for (int i = 0; i <= mi - 1; i++)
+		{
+			cout << "(" << v.at(i) << ",";
+			//printf(u.c_str());
+			cout << u[i];
+			cout << ")" ",";
+			//cout << "hello";
+		}
+		cout << "}";
+	}
+	else
+		cout << "nothing";
+
+}
 
 
 
 void main()
 {
-
+	
 	vector<double> v({ 1.1,2.2,3,3.3 });
 	cout << "after map function" << endl;
 	v = map(v);
@@ -59,10 +128,23 @@ void main()
 	vector<double> v1({ 1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10 });
 	/*for (int i = 0; i <= v1.size() - 1; i++)
 	{
-	cout << v1.at(i) << endl;
+		cout << v1.at(i) << endl;
 	}*/
-	cout << "After reduce" << endl;
+	cout << "Reduce COde" << endl;
 	cout << reduce(v1) << endl;
+	
+	cout << "ZIp COde" << endl;
 
+	vector<int> a({ 1,2,3 });
+	vector<double> b({ 1.1,2.2,3.3,4.4,5.5 });
+	cout << "integer and double zip" << endl;
+	zip_fun(a, b);
+	vector<string> c({ "abc","ab" });
+	cout<< endl << "Integer/double and strings zip" << endl;
+	zip2_fun(a, c);
+	string s = "abc";
+	cout<<endl << "integer/double and character zip" << endl;
+	zip_fun(a, s);
+	cout << endl;
 
 }

@@ -46,38 +46,19 @@ T reduce(const vector<T>& v)
 template<typename T, typename U>
 void zip_fun(const vector<T>& v, const vector<U>& u)
 {
-	//vector<T> res;
 	int mi = min(v.size(), u.size());
-	//if (typeid(u) == typeid(std::string))
-	//{
-	//	cout << "{";
-	//	for (int i = 0; i <= mi - 1; i++)
-	//	{
-	//		cout << "(" << v.at(i) << ",";
-	//		printf(u.at(i).c_str());
-	//		cout << ")" ",";
-	//		cout << "hello";
-	//		//res[i] = v.at(x); i++;
-	//		//res[i] = u.at(u); i++;
-	//	}
-	//	cout << "}";
-	//}
-	//else
-	//{
 	cout << "{";
+
 	for (int i = 0; i <= mi - 1; i++)
 	{
 		cout << "(" << v.at(i) << "," << u.at(i) << ")" ",";
-		//res[i] = v.at(x); i++;
-		//res[i] = u.at(u); i++;
 	}
 	cout << "}";
-	//}
 
-	//return res;
 }
+
 template<typename T>
-void zip2_fun(const vector<T>& v, const vector<string> u)
+void zip_fun(const vector<T>& v, const vector<string> u)
 {
 	int mi = min(v.size(), u.size());
 	cout << "{";
@@ -86,8 +67,20 @@ void zip2_fun(const vector<T>& v, const vector<string> u)
 		cout << "(" << v.at(i) << ",";
 		printf(u.at(i).c_str());
 		cout << ")" ",";
-		//res[i] = v.at(x); i++;
-		//res[i] = u.at(u); i++;
+	}
+	cout << "}";
+}
+template<typename T>
+void zip_fun(const vector<string> u, const vector<T>& v)
+{
+	int mi = min(v.size(), u.size());
+	cout << "{";
+	for (int i = 0; i <= mi - 1; i++)
+	{
+		cout << "("; printf(u.at(i).c_str());
+
+		cout << "," << v.at(i);
+		cout << ")" ",";
 	}
 	cout << "}";
 }
@@ -101,10 +94,8 @@ void zip_fun(const vector<T>& v, const U & u)
 		for (int i = 0; i <= mi - 1; i++)
 		{
 			cout << "(" << v.at(i) << ",";
-			//printf(u.c_str());
 			cout << u[i];
 			cout << ")" ",";
-			//cout << "hello";
 		}
 		cout << "}";
 	}
@@ -112,7 +103,26 @@ void zip_fun(const vector<T>& v, const U & u)
 		cout << "nothing";
 
 }
-
+template<typename T, typename U>
+void zip_fun(const U &u, const vector<T> v)
+{
+	int mi = min(v.size(), u.size());
+	if (typeid(u) == typeid(std::string))
+	{
+		cout << "{";
+		for (int i = 0; i <= mi - 1; i++)
+		{
+			cout << "(" << u[i] << ",";
+			//printf(u.c_str());
+			cout << v.at(i);
+			cout << ")" ",";
+			//cout << "hello";
+		}
+		cout << "}";
+	}
+	else
+		cout << "nothing";
+}
 
 
 void main()
@@ -141,10 +151,13 @@ void main()
 	zip_fun(a, b);
 	vector<string> c({ "abc","ab" });
 	cout<< endl << "Integer/double and strings zip" << endl;
-	zip2_fun(a, c);
+	zip_fun(a, c);
+	cout << endl << "String and integer/double";
+	zip_fun(c, a);
 	string s = "abc";
 	cout<<endl << "integer/double and character zip" << endl;
 	zip_fun(a, s);
-	cout << endl;
+	cout << endl << "Charater with integer/double" << endl;
+	zip_fun(s, a);
 
 }

@@ -239,4 +239,5 @@ void main()
 		cout << z2.at(i);
 	}
 	cout << endl;
+	cout <<endl;
 }

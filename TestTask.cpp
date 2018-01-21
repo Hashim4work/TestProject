@@ -155,6 +155,38 @@ int myfunctionMul(int res, int i)
 
 }
 
+template <typename T>
+vector<T> filter_larger(const vector<T>& v, const T &value)
+{
+	vector<T> res;
+	res.reserve(v.size());
+	for (int i = 0; i <= v.size() - 1; i++)
+	{
+		if (v.at(i) >= value)
+		{
+			res.push_back(v.at(i));
+		}
+	}
+	if (res.empty())
+	{
+		cout << "No value greater than :" << value << endl;
+	}
+	return res;
+}
+template <typename T>
+vector<T> filter_even(const vector<T>& v)
+{
+	vector<T> res;
+	res.reserve(v.size());
+	for (int i = 0; i < v.size(); i++)
+	{
+		if (v.at(i) % 2 == 0)
+		{
+			res.push_back(v.at(i));
+		}
+	}
+	return res;
+}
 void main()
 {
 	
@@ -193,5 +225,18 @@ void main()
 	for_eachh(a.begin(), a.end(), myfunctiondis);
 	cout << endl << "forEach fun to display result of multiplicatio of all elements in array" << endl;
 	for_eachh(a.begin(), a.end(), myfunctionMul, 0);
-	cout << endl << "Similarly we can write forEach function for any other logic like display sum of list";
+	cout << endl << "Similarly we can write forEach function for any other logic like display sum of list" << endl;
+	cout << "filter for values larger thanx X" << endl;
+	vector<int> z = filter_larger(a, 2);
+	for (int i = 0; i < z.size(); i++)
+	{
+		cout << z.at(i) << endl;
+	}
+	cout << "filter for even values in list" << endl;
+	vector<int> z2 = filter_even(a);
+	for (int i = 0; i < z2.size(); i++)
+	{
+		cout << z2.at(i);
+	}
+	cout << endl;
 }
